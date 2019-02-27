@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">NotesApp</string>
+    <string name="my_notes">My Notes</string>
+    <string name="entrar">Login</string>
+    <string name="title_activity_notas">NotasActivity</string>
+    <string name="title_note">Note</string>
+    <string name="title_favourites">Favoritas</string>
+    <string name="title_user_profile">Mi Perfil</string>
+</resources>
