@@ -1,5 +1,6 @@
-package com.fflush.responsivedesign;
+package com.fflush.responsivedesign.ui;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,16 +8,19 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.fflush.responsivedesign.db.entity.NoteEntity;
+import com.fflush.responsivedesign.R;
+
 import java.util.List;
 
 public class MyNoteRecyclerViewAdapter extends RecyclerView.Adapter<MyNoteRecyclerViewAdapter.ViewHolder> {
 
-    private final List<Note> mValues;
-    private final NotesInteractionListener mListener;
+    private final List<NoteEntity> mValues;
+    private Context context;
 
-    public MyNoteRecyclerViewAdapter(List<Note> items, NotesInteractionListener listener) {
+    public MyNoteRecyclerViewAdapter(List<NoteEntity> items, Context context) {
         mValues = items;
-        mListener = listener;
+        this.context = context;
     }
 
     @Override
@@ -39,11 +43,7 @@ public class MyNoteRecyclerViewAdapter extends RecyclerView.Adapter<MyNoteRecycl
         holder.imageViewFavourite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener.favouriteNoteClick(holder.mItem);
-                }
+
             }
         });
     }
@@ -58,7 +58,7 @@ public class MyNoteRecyclerViewAdapter extends RecyclerView.Adapter<MyNoteRecycl
         public final TextView textViewTitle;
         public final TextView textViewContent;
         public final ImageView imageViewFavourite;
-        public Note mItem;
+        public NoteEntity mItem;
 
         public ViewHolder(View view) {
             super(view);

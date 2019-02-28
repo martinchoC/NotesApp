@@ -1,17 +1,32 @@
-package com.fflush.responsivedesign;
+package com.fflush.responsivedesign.db.entity;
 
-public class Note {
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 
-    private String title;
-    private String content;
-    private boolean favourite;
-    private int color;
+@Entity (tableName = "notas")
+public class NoteEntity {
 
-    public Note(String title, String content, boolean favourite, int color) {
+    @PrimaryKey (autoGenerate = true)
+    public int id;
+
+    public String title;
+    public String content;
+    public boolean favourite;
+    public int color;
+
+    public NoteEntity(String title, String content, boolean favourite, int color) {
         this.title = title;
         this.content = content;
         this.favourite = favourite;
         this.color = color;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {

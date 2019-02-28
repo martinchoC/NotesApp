@@ -1,4 +1,4 @@
-package com.fflush.responsivedesign;
+package com.fflush.responsivedesign.ui;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -7,7 +7,10 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-public class NotasActivity extends AppCompatActivity implements NotesInteractionListener {
+import com.fflush.responsivedesign.R;
+
+//Va a gestionar las pantallas de la parte privada de la app
+public class DashboardActivity extends AppCompatActivity{
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -51,18 +54,4 @@ public class NotasActivity extends AppCompatActivity implements NotesInteraction
                 .commit();
     }
 
-    @Override
-    public void editNoteClick(Note note) {
-
-    }
-
-    @Override
-    public void deleteNoteClick(Note note) {
-
-    }
-
-    @Override
-    public void favouriteNoteClick(Note note) {
-
-    }
 }

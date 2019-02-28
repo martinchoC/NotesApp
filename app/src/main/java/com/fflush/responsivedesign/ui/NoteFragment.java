@@ -1,4 +1,4 @@
-package com.fflush.responsivedesign;
+package com.fflush.responsivedesign.ui;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,6 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.fflush.responsivedesign.R;
+import com.fflush.responsivedesign.db.entity.NoteEntity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,8 +23,7 @@ public class NoteFragment extends Fragment {
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 2;
-    private NotesInteractionListener mListener;
-    private List<Note> mNoteList;
+    private List<NoteEntity> mNoteEntityList;
     private MyNoteRecyclerViewAdapter mAdapterNotes;
 
     /**
@@ -74,33 +76,16 @@ public class NoteFragment extends Fragment {
                 recyclerView.setLayoutManager(new StaggeredGridLayoutManager(numColumnas, StaggeredGridLayoutManager.VERTICAL));
             }
 
-            mNoteList = new ArrayList<>();
-            mNoteList.add(new Note("Lista de compras", "naranjas\nmanzanas\nmelon\nsandia",true, android.R.color.holo_blue_light));
-            mNoteList.add(new Note("Estacionamiento", "Dejé el auto en la plaza, no olvidar cargar la app",false, android.R.color.holo_green_light));
-            mNoteList.add(new Note("Cumple mio", "Preparar la comida y bebida.\nIr al mayorista a comprar lo necesario",true, android.R.color.holo_red_light));
+            mNoteEntityList = new ArrayList<>();
+            mNoteEntityList.add(new NoteEntity("Lista de compras", "naranjas\nmanzanas\nmelon\nsandia",true, android.R.color.holo_blue_light));
+            mNoteEntityList.add(new NoteEntity("Estacionamiento", "Dejé el auto en la plaza, no olvidar cargar la app",false, android.R.color.holo_green_light));
+            mNoteEntityList.add(new NoteEntity("Cumple mio", "Preparar la comida y bebida.\nIr al mayorista a comprar lo necesario",true, android.R.color.holo_red_light));
 
-            mAdapterNotes = new MyNoteRecyclerViewAdapter(mNoteList, mListener);
+            mAdapterNotes = new MyNoteRecyclerViewAdapter(mNoteEntityList, getActivity());
             recyclerView.setAdapter(mAdapterNotes);
         }
         return view;
     }
 
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof NotesInteractionListener) {
-            mListener = (NotesInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnListFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
 
 }
