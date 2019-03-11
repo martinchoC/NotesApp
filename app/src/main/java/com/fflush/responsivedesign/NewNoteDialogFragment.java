@@ -4,20 +4,19 @@ import android.app.Dialog;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 
+import com.fflush.responsivedesign.db.entity.NoteEntity;
+
 public class NewNoteDialogFragment extends DialogFragment {
 
-    private NewNoteDialogViewModel mViewModel;
 
     public static NewNoteDialogFragment newInstance() {
         return new NewNoteDialogFragment();
@@ -34,7 +33,6 @@ public class NewNoteDialogFragment extends DialogFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(NewNoteDialogViewModel.class);
         // TODO: Use the ViewModel
     }
 
@@ -61,11 +59,18 @@ public class NewNoteDialogFragment extends DialogFragment {
                                 break;
                         }
                         boolean isFavourite =switchFavourite.isChecked();
+
+                        //here to get an instance each time
+                        //communicate the viewmodel the new data
+                        NewNoteDialogViewModel mViewModel = ViewModelProviders.of(getActivity()).get(NewNoteDialogViewModel.class);
+                        mViewModel.insertNote(new NoteEntity(title, content, isFavourite, color));
+                        dialog.dismiss();
                     }
                 })
                 .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // User cancelled the dialog
+                        dialog.dismiss();
                     }
                 });
 

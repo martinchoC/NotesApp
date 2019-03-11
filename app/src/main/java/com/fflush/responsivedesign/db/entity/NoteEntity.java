@@ -12,9 +12,9 @@ public class NoteEntity {
     public String title;
     public String content;
     public boolean favourite;
-    public int color;
+    public String color;
 
-    public NoteEntity(String title, String content, boolean favourite, int color) {
+    public NoteEntity(String title, String content, boolean favourite, String color) {
         this.title = title;
         this.content = content;
         this.favourite = favourite;
@@ -53,11 +53,11 @@ public class NoteEntity {
         this.favourite = favourite;
     }
 
-    public int getColor() {
+    public String getColor() {
         return color;
     }
 
-    public void setColor(int color) {
+    public void setColor(String color) {
         this.color = color;
     }
 }

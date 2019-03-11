@@ -9,7 +9,7 @@ import com.fflush.responsivedesign.db.dao.DAONote;
 import com.fflush.responsivedesign.db.entity.NoteEntity;
 
 
-@Database(entities = {NoteEntity.class}, version = 1)
+@Database(entities = {NoteEntity.class}, version = 1, exportSchema = false)
 public abstract class RoomNoteDatabase extends RoomDatabase {
 
     public abstract DAONote daoNote();  //permite obtener un objeto DAO cuando lo necesite
